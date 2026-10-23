@@ -1,0 +1,33 @@
+{
+  "name": "cubesquare-listing",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "lint:styles": "stylelint \"src/**/*.scss\"",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@fontsource/inter": "5.0.18",
+    "@tanstack/react-query": "5.51.1",
+    "bootstrap": "5.3.3",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
+    "@vitejs/plugin-react": "4.3.1",
+    "sass": "1.77.8",
+    "stylelint": "16.7.0",
+    "stylelint-config-standard-scss": "13.1.0",
+    "typescript": "5.5.3",
+    "vite": "5.3.4",
+    "vitest": "2.0.3"
+  }
+}

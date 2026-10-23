@@ -1,0 +1,7 @@
+# CSS Governance Note
+
+**Structure.** `src/styles/theme/_tokens.scss` is the only place design values live: primary colour, border radius and font family, set as Bootstrap Sass variable overrides. `main.scss` imports the tokens before Bootstrap, so every component, including the KYC banner (`alert-warning`, `alert-danger`), inherits them. Components contain no custom CSS and use Bootstrap classes and `var(--bs-*)` only. The one inline style is the progress-bar width, which is data, not design.
+
+**PR enforcement.** Stylelint (`npm run lint:styles`) runs in CI and pre-commit: `color-no-hex` outside the theme folder and `declaration-no-important`. CODEOWNERS puts `theme/` under the UI Designer's approval. The PR template asks: Bootstrap class first, no literal colours, spacing or fonts, new tokens requested from design. Storybook with visual-regression snapshots would catch drift in review. Figma variables export to `_tokens.scss` through Style Dictionary, so Figma and code cannot diverge by hand.
+
+**White-label theming.** Each operator gets a small token file (`theme/operators/<name>.scss`) overriding the same Bootstrap variables, with a shared structure and zero component changes. A build flag such as `VITE_OPERATOR` selects the file per deployment. Because Bootstrap 5.3 compiles to CSS variables, runtime switching is also possible by scoping `--bs-primary` and related variables to `[data-operator="name"]`. Operators may change tokens only, never component markup, so the product stays consistent and testable.
